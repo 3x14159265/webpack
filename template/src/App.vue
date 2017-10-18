@@ -1,34 +1,38 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    {{#router}}
-    <router-view/>
-    {{else}}
-    <HelloWorld/>
-    {{/router}}
-  </div>
+	<div id="app">
+		<main-navbar></main-navbar>
+		<router-view/>
+	</div>
 </template>
 
 <script>
-{{#unless router}}
-import HelloWorld from './components/HelloWorld'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import MainNavbar from './components/MainNavbar'
+import { firebase } from './firebase'
 
-{{/unless}}
 export default {
-  name: 'app'{{#router}}{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{else}},
-  components: {
-    HelloWorld{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}{{/router}}
-}{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+	name: 'app',
+	created () {
+		// listen to auth changes
+		// if user is logged in, redirect to main page for user
+		// otherwise force login
+		firebase.auth().onAuthStateChanged((user) => {
+			this.$store.commit('setUser', user)
+			if(user) {
+				this.$router.push('/dashboard')
+			} else {
+				this.$router.push('/login')
+			}
+		})
+	}
+}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+	@import './../node_modules/bulma/css/bulma.css'
+</style>
+<style>
+	@import './assets/app.css'
+</style>
+<style>
+	@import 'https://fonts.googleapis.com/css?family=Lato'
 </style>
