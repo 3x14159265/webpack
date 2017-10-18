@@ -1,15 +1,52 @@
-import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import Router from 'vue-router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import HelloWorld from '@/components/HelloWorld'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Vue from 'vue'
+import Router from 'vue-router'
+import LoadingScreen from '@/components/LoadingScreen'
+import UserDashboard from '@/components/UserDashboard'
+import UserRegister from '@/components/UserRegister'
+import UserLogin from '@/components/UserLogin'
+import UserResetPassword from '@/components/UserResetPassword'
+import { firebase } from './../firebase'
 
-Vue.use(Router){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+Vue.use(Router)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: HelloWorld{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  ]{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+const router = new Router({
+	routes: [
+		{
+			path: '/loading',
+			name: 'LoadingScreen',
+			component: LoadingScreen
+		},
+		{
+			path: '/register',
+			name: 'UserRegister',
+			component: UserRegister
+		},
+		{
+			path: '/login',
+			name: 'UserLogin',
+			component: UserLogin
+		},
+		{
+			path: '/reset-password',
+			name: 'UserResetPassword',
+			component: UserResetPassword
+		},
+		{
+			path: '/dashboard',
+			name: 'UserDashboard',
+			component: UserDashboard
+		},
+		{ path: '*', redirect: '/loading' }
+	]
+})
+
+router.beforeEach((to, from, next) => {
+	if(!firebase.auth().currentUser
+		&& to.name != 'UserRegister'
+		&& to.name != 'UserLogin'
+		&& to.name != 'UserResetPassword'
+		&& to.name != 'LoadingScreen') next({ path: '/loading'})
+	else next()
+})
+
+export default router
