@@ -3,58 +3,42 @@
 		<div class="container is-fluid">
 
 			<div class="columns">
-				<div class="column is-one-third is-offset-one-third">
-					<div class="field">
-						<div class="control has-text-centered">
-							<button class="button is-facebook"
-								v-on:click="signupWith('facebook')">
-								<i class="typcn typcn-social-facebook"></i>
-								<span>Sign in with Facebook</span>
-							</button>
-						</div>
-					</div>
+				<div class="column is-one-third is-offset-one-third has-text-centered">					<!-- <div class="field"> -->
+					<button class="button is-facebook"
+						v-on:click="signupWith('facebook')">
+						<i class="typcn typcn-social-facebook"></i>
+						<span>Sign up with Facebook</span>
+					</button>
 				</div>
 			</div>
 
 			<div class="columns">
-				<div class="column is-one-third is-offset-one-third">
-					<div class="field">
-						<div class="control has-text-centered">
-							<button class="button is-github"
-								v-on:click="signupWith('github')">
-								<i class="typcn typcn-social-github"></i>
-								<span>Sign in with Github</span>
-							</button>
-						</div>
-					</div>
+				<div class="column is-one-third is-offset-one-third has-text-centered">
+					<button class="button is-github"
+						v-on:click="signupWith('github')">
+						<i class="typcn typcn-social-github"></i>
+						<span>Sign up with Github</span>
+					</button>
 				</div>
 			</div>
 
 			<div class="columns">
-				<div class="column is-one-third is-offset-one-third">
-					<div class="field">
-						<div class="control has-text-centered">
-							<button class="button is-google"
-								v-on:click="signupWith('google')">
-								<i class="typcn typcn-social-google"></i>
-								<span>Sign in with Google</span>
-							</button>
-						</div>
-					</div>
+				<div class="column is-one-third is-offset-one-third has-text-centered">
+					<button class="button is-google"
+						v-on:click="signupWith('google')">
+						<i class="typcn typcn-social-google"></i>
+						<span>Sign up with Google</span>
+					</button>
 				</div>
 			</div>
 
 			<div class="columns">
-				<div class="column is-one-third is-offset-one-third">
-					<div class="field">
-						<div class="control has-text-centered">
-							<button class="button is-google"
-								v-on:click="signupWith('twitter')">
-								<i class="typcn typcn-social-twitter"></i>
-								<span>Sign in with Twitter</span>
-							</button>
-						</div>
-					</div>
+				<div class="column is-one-third is-offset-one-third has-text-centered">
+					<button class="button is-google"
+						v-on:click="signupWith('twitter')">
+						<i class="typcn typcn-social-twitter"></i>
+						<span>Sign up with Twitter</span>
+					</button>
 				</div>
 			</div>
 
@@ -108,7 +92,7 @@
 						<div class="control has-text-centered">
 							<button v-on:click="signup" :disabled="$v.$invalid"
 								v-bind:class="{'is-loading': loading}"
-								type="submit" class="button is-link">Sign up</button>
+								type="submit" class="button">Sign up</button>
 						</div>
 					</div>
 

@@ -6,8 +6,12 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import MainNavbar from './components/MainNavbar'
 import { firebase } from './firebase'
+
+// add main-navbar as component
+Vue.component('main-navbar', MainNavbar)
 
 export default {
 	name: 'app',

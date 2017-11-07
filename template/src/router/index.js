@@ -34,18 +34,15 @@ const router = new Router({
 		{
 			path: '/dashboard',
 			name: 'UserDashboard',
-			component: UserDashboard
+			component: UserDashboard,
+			auth: true
 		},
 		{ path: '*', redirect: '/loading' }
 	]
 })
 
 router.beforeEach((to, from, next) => {
-	if(!firebase.auth().currentUser
-		&& to.name != 'UserRegister'
-		&& to.name != 'UserLogin'
-		&& to.name != 'UserResetPassword'
-		&& to.name != 'LoadingScreen') next({ path: '/loading'})
+	if(to.auth && !firebase.auth().currentUser) next({ path: '/login'})
 	else next()
 })
 

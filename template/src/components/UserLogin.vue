@@ -3,54 +3,38 @@
 		<div class="container is-fluid">
 			
 			<div class="columns">
-				<div class="column is-one-third is-offset-one-third">
-					<div class="field">
-						<div class="control has-text-centered">
-							<button class="button"
-								v-on:click="loginWith('facebook')">
-								<span>Sign in with Facebook</span>
-							</button>
-						</div>
-					</div>
+				<div class="column is-one-third is-offset-one-third has-text-centered">
+					<button class="button"
+						v-on:click="loginWith('facebook')">
+						<span>Sign in with Facebook</span>
+					</button>
 				</div>
 			</div>
 
 			<div class="columns">
-				<div class="column is-one-third is-offset-one-third">
-					<div class="field">
-						<div class="control has-text-centered">
-							<button class="button"
-								v-on:click="loginWith('github')">
-								<span>Sign in with Github</span>
-							</button>
-						</div>
-					</div>
+				<div class="column is-one-third is-offset-one-third has-text-centered">
+					<button class="button"
+						v-on:click="loginWith('github')">
+						<span>Sign in with Github</span>
+					</button>
 				</div>
 			</div>
 
 			<div class="columns">
-				<div class="column is-one-third is-offset-one-third">
-					<div class="field">
-						<div class="control has-text-centered">
-							<button class="button"
-								v-on:click="loginWith('google')">
-								<span>Sign in with Google</span>
-							</button>
-						</div>
-					</div>
+				<div class="column is-one-third is-offset-one-third has-text-centered">
+					<button class="button"
+						v-on:click="loginWith('google')">
+						<span>Sign in with Google</span>
+					</button>
 				</div>
 			</div>
 
 			<div class="columns">
-				<div class="column is-one-third is-offset-one-third">
-					<div class="field">
-						<div class="control has-text-centered">
-							<button class="button"
-								v-on:click="loginWith('twitter')">
-								<span>Sign in with Twitter</span>
-							</button>
-						</div>
-					</div>
+				<div class="column is-one-third is-offset-one-third has-text-centered">
+					<button class="button"
+						v-on:click="loginWith('twitter')">
+						<span>Sign in with Twitter</span>
+					</button>
 				</div>
 			</div>
 
@@ -88,7 +72,7 @@
 						<div class="control has-text-centered">
 							<button v-on:click="login" :disabled="$v.$invalid || loading"
 								v-bind:class="{'is-loading': loading}"
-								type="submit" class="button is-link">Sign in</button>
+								type="submit" class="button">Sign in</button>
 						</div>
 					</div>
 

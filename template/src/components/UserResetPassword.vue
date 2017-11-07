@@ -23,7 +23,7 @@
 						<div class="control has-text-centered">
 							<button v-on:click="reset" :disabled="$v.$invalid"
 								v-bind:class="{'is-loading': loading}"
-								type="submit" class="button is-link">Reset password</button>
+								type="submit" class="button">Reset password</button>
 						</div>
 					</div>
 				</div>

@@ -13,6 +13,6 @@ if(process.env.NODE_ENV === 'testing') config = testEnv
 // make sure that Firebase is only initialized once
 export const firebase = Firebase.apps.length == 0 ? Firebase.initializeApp(config) : Firebase.apps[0]
 // using the new firestore instead of RT database
-// to use the old RT database of firebase, replace with this LoadingScreen
+// to use the old RT database of firebase, replace with
 // export const database = firebase.database()
 export const database = firebase.firestore()
