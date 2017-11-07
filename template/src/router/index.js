@@ -5,7 +5,7 @@ import UserDashboard from '@/components/UserDashboard'
 import UserRegister from '@/components/UserRegister'
 import UserLogin from '@/components/UserLogin'
 import UserResetPassword from '@/components/UserResetPassword'
-import { firebase } from './../firebase'
+import { firebase } from '@/firebase'
 
 Vue.use(Router)
 

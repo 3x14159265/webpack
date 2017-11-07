@@ -1,17 +1,17 @@
 <template>
 	<div id="app">
-		<main-navbar></main-navbar>
+		<navbar-main></navbar-main>
 		<router-view/>
 	</div>
 </template>
 
 <script>
 import Vue from 'vue'
-import MainNavbar from './components/MainNavbar'
-import { firebase } from './firebase'
+import NavbarMain from '@/components/NavbarMain'
+import { firebase } from '@/firebase'
 
 // add main-navbar as component
-Vue.component('main-navbar', MainNavbar)
+Vue.component('navbar-main', NavbarMain)
 
 export default {
 	name: 'app',

@@ -113,7 +113,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, minLength, email } from 'vuelidate/lib/validators'
 import Firebase from 'firebase'
-import { firebase, database } from './../firebase'
+import { firebase, database } from '@/firebase'
 
 export default {
 	name: 'UserRegister',

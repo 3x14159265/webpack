@@ -94,7 +94,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import Firebase from 'firebase'
-import { firebase, database } from './../firebase'
+import { firebase, database } from '@/firebase'
 
 export default {
 	name: 'UserLogin',
