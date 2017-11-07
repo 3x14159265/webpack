@@ -81,7 +81,7 @@
 					</div>
 
 					<div class="field has-text-centered has-text-danger" v-if="error">
-						{{ error }}
+						\{{ error }}
 					</div>
 
 					<div class="field">
@@ -110,7 +110,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import Firebase from 'firebase'
-import { firebase } from './../firebase'
+import { firebase, database } from './../firebase'
 
 export default {
 	name: 'UserLogin',
@@ -166,8 +166,10 @@ export default {
 			
 			return firebase.auth().signInWithPopup(provider)
 				.then((result) => {
-					// store firebase current user
-					return store.commit('setUser', firebase.auth().currentUser)
+					let user = firebase.auth().currentUser
+					// save user to firestore
+					return database.collection('users').doc(user.uid)
+						.set(user)
 				})
 		}
 	}

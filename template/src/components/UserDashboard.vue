@@ -1,6 +1,6 @@
 <template>
 
-	<pre>{{ user }}</pre>
+	<pre>\{{ user }}</pre>
 
 </template>
 

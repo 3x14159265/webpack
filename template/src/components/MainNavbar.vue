@@ -3,7 +3,7 @@
 		<div class="navbar-brand">
 			<router-link class="navbar-item" to="/">
 				<img src="./../assets/logo.png">
-				<strong>{{ appName }}</strong>
+				<strong>\{{ appName }}</strong>
 			</router-link>
 			<div class="navbar-burger" v-bind:class="{'is-active': showMenu}" data-target="navMenu" v-on:click="toggleMenu">
 				<span></span>
@@ -15,7 +15,7 @@
 			<div class="navbar-end has-dropdown">
 				<div class="navbar-item has-dropdown is-hoverable">
 					<div class="navbar-link">
-						{{ user.displayName }}
+						\{{ user.displayName }}
 					</div>
 					<div class="navbar-dropdown">
 						<a v-on:click="logout" class="navbar-item">Logout</a>

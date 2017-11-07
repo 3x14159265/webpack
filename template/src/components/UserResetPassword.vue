@@ -13,7 +13,7 @@
 					</div>
 
 					<div class="field has-text-centered has-text-danger" v-if="error">
-						{{ error }}
+						\{{ error }}
 					</div>
 					<div class="field has-text-centered has-text-success" v-if="success">
 						An email with further instructions has been sent

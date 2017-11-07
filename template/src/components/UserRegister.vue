@@ -101,7 +101,7 @@
 					</div>
 
 					<div class="field has-text-centered has-text-danger" v-if="error">
-						{{ error }}
+						\{{ error }}
 					</div>
 
 					<div class="field">
@@ -129,7 +129,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, minLength, email } from 'vuelidate/lib/validators'
 import Firebase from 'firebase'
-import { firebase } from './../firebase'
+import { firebase, database } from './../firebase'
 
 export default {
 	name: 'UserRegister',
@@ -170,16 +170,20 @@ export default {
 					// set name for user, after registration is successful
 					return user.updateProfile({
 						displayName: this.name,
-					}).then((result) => {
-						// send email verification for this user
-						return user.sendEmailVerification()
-					})
+					}).then(() => user.sendEmailVerification)
 				})
 				.then((result) => {
 					let user = firebase.auth().currentUser
 					// save user to firestore
-					return firebase.db.collection('users').doc(user.uid)
+					return database.collection('users').doc(user.uid)
 						.set(user)
+				})
+				.then((result) => {
+					// store firebase current user
+					return this.$store.commit('setUser', firebase.auth().currentUser)
+				})
+				.then(() => {
+					this.$router.push('/dashboard')
 				})
 				.catch((error) => {
 					console.log(error)
@@ -209,12 +213,8 @@ export default {
 				.then((result) => {
 					let user = firebase.auth().currentUser
 					// save user to firestore
-					return firebase.db.collection('users').doc(user.uid)
+					return database.collection('users').doc(user.uid)
 						.set(user)
-				})
-				.then((result) => {
-					// store firebase current user
-					return store.commit('setUser', firebase.auth().currentUser)
 				})
 				
 		}
