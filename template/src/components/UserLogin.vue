@@ -169,7 +169,10 @@ export default {
 					let user = firebase.auth().currentUser
 					// save user to firestore
 					return database.collection('users').doc(user.uid)
-						.set(user)
+						.set({
+							name: user.displayName,
+							email: user.email
+						})
 				})
 		}
 	}

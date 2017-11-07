@@ -69,9 +69,9 @@
 				<div class="column is-half is-offset-one-quarter">
 
 					<div class="field">
-						<label class="label is-medium">Name</label>
+						<label class="label">Name</label>
 						<div class="control">
-							<input v-model.trim="name" class="input is-medium"
+							<input v-model.trim="name" class="input"
 								type="text" placeholder="Enter your name"
 								@blur="$v.name.$touch()" required>
 						</div>
@@ -79,9 +79,9 @@
 					</div>
 
 					<div class="field">
-						<label class="label is-medium">Email</label>
+						<label class="label">Email</label>
 						<div class="control">
-							<input v-model.trim="email" class="input is-medium"
+							<input v-model.trim="email" class="input"
 								type="email" placeholder="Enter your email"
 								@blur="$v.email.$touch()" required>
 						</div>
@@ -90,9 +90,9 @@
 					</div>
 
 					<div class="field">
-						<label class="label is-medium">Password</label>
+						<label class="label">Password</label>
 						<div class="control">
-							<input v-model.trim="password" class="input is-medium"
+							<input v-model.trim="password" class="input"
 								type="password" placeholder="Enter your password"
 								@blur="$v.password.$touch()" required>
 						</div>
@@ -108,7 +108,7 @@
 						<div class="control has-text-centered">
 							<button v-on:click="signup" :disabled="$v.$invalid"
 								v-bind:class="{'is-loading': loading}"
-								type="submit" class="button is-link is-medium">Get started for free</button>
+								type="submit" class="button is-link">Get started for free</button>
 						</div>
 					</div>
 
@@ -176,7 +176,10 @@ export default {
 					let user = firebase.auth().currentUser
 					// save user to firestore
 					return database.collection('users').doc(user.uid)
-						.set(user)
+						.set({
+							name: user.displayName,
+							email: user.email
+						})
 				})
 				.then((result) => {
 					// store firebase current user
@@ -214,7 +217,10 @@ export default {
 					let user = firebase.auth().currentUser
 					// save user to firestore
 					return database.collection('users').doc(user.uid)
-						.set(user)
+						.set({
+							name: user.displayName,
+							email: user.email
+						})
 				})
 				
 		}

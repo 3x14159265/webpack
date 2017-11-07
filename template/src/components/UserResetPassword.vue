@@ -4,9 +4,9 @@
 			<div class="columns">
 				<div class="column is-half is-offset-one-quarter">
 					<div class="field">
-						<label class="label is-medium">Email</label>
+						<label class="label">Email</label>
 						<div class="control">
-							<input v-model.trim="email" class="input is-medium"
+							<input v-model.trim="email" class="input"
 								type="email" placeholder="Enter your email"
 								@blur="$v.email.$touch()" required>
 						</div>
@@ -23,7 +23,7 @@
 						<div class="control has-text-centered">
 							<button v-on:click="reset" :disabled="$v.$invalid"
 								v-bind:class="{'is-loading': loading}"
-								type="submit" class="button is-link is-medium">Reset password</button>
+								type="submit" class="button is-link">Reset password</button>
 						</div>
 					</div>
 				</div>
