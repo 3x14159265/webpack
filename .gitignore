@@ -3,3 +3,5 @@ node_modules
 docs/_book
 
 *.firebase.config.js
+*.orig
+*.directory

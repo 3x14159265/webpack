@@ -1,33 +1,94 @@
 <template>
 	<section class="section">
 		<div class="container is-fluid">
+			
+			<div class="columns">
+				<div class="column is-one-third is-offset-one-third">
+					<div class="field">
+						<div class="control has-text-centered">
+							<button class="button"
+								v-on:click="loginWith('facebook')">
+								<span>Sign in with Facebook</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<div class="columns">
-				<div class="column is-half is-offset-one-quarter">
-
+				<div class="column is-one-third is-offset-one-third">
 					<div class="field">
-						<label class="label is-medium">Email</label>
+						<div class="control has-text-centered">
+							<button class="button"
+								v-on:click="loginWith('github')">
+								<span>Sign in with Github</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="columns">
+				<div class="column is-one-third is-offset-one-third">
+					<div class="field">
+						<div class="control has-text-centered">
+							<button class="button"
+								v-on:click="loginWith('google')">
+								<span>Sign in with Google</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="columns">
+				<div class="column is-one-third is-offset-one-third">
+					<div class="field">
+						<div class="control has-text-centered">
+							<button class="button"
+								v-on:click="loginWith('twitter')">
+								<span>Sign in with Twitter</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="columns">
+				<div class="column is-one-third is-offset-one-third has-text-centered">
+					<hr>
+				</div>
+			</div>
+
+			<div class="columns">
+				<div class="column is-one-third is-offset-one-third">
+					<div class="field">
+						<label class="label">Email</label>
 						<div class="control">
-							<input v-model.trim="email" class="input is-medium"
+							<input v-model.trim="email" class="input"
 								type="email" placeholder="Enter your email"
 								@blur="$v.email.$touch()" required>
 						</div>
 					</div>
 
 					<div class="field">
-						<label class="label is-medium">Password</label>
+						<label class="label">Password</label>
 						<div class="control">
-							<input v-model.trim="password" class="input is-medium"
+							<input v-model.trim="password" class="input"
 								type="password" placeholder="Enter your password"
 								required>
 						</div>
 					</div>
 
+					<div class="field has-text-centered has-text-danger" v-if="error">
+						{{ error }}
+					</div>
+
 					<div class="field">
 						<div class="control has-text-centered">
-							<button v-on:click="login" :disabled="$v.$invalid"
+							<button v-on:click="login" :disabled="$v.$invalid || loading"
 								v-bind:class="{'is-loading': loading}"
-								type="submit" class="button is-link is-medium">Login</button>
+								type="submit" class="button is-link">Sign in</button>
 						</div>
 					</div>
 
@@ -36,7 +97,7 @@
 
 			<div class="columns">
 				<div class="column has-text-centered is-size-7">
-					<p>Don't have an account? <router-link to="/register">Sign up here</router-link></p>
+					<p>Don't have an account? <router-link to="/register">Sign up</router-link></p>
 					<p><router-link to="/reset-password">Forgot password?</router-link></p>
 				</div>
 			</div>
@@ -48,6 +109,7 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
+import Firebase from 'firebase'
 import { firebase } from './../firebase'
 
 export default {
@@ -80,8 +142,32 @@ export default {
 			this.loading = true
 			firebase.auth().signInWithEmailAndPassword(this.email, this.password)
 				.catch((error) => {
-					console.log(error)
+					this.loading = false
 					this.error = error.message
+				})
+		},
+		loginWith (platform) {
+			let provider
+			switch(platform) {
+				case 'facebook':
+					provider = new Firebase.auth.FacebookAuthProvider()
+					// provider.addScope('user_birthday')
+					break
+				case 'google':	
+					provider = new Firebase.auth.GoogleAuthProvider()
+					break
+				case 'twitter':	
+					provider = new Firebase.auth.TwitterAuthProvider()
+					break	
+				case 'github':	
+					provider = new Firebase.auth.GithubAuthProvider()
+					break		
+			}
+			
+			return firebase.auth().signInWithPopup(provider)
+				.then((result) => {
+					// store firebase current user
+					return store.commit('setUser', firebase.auth().currentUser)
 				})
 		}
 	}

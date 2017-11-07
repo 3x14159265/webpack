@@ -1,6 +1,69 @@
 <template>
 	<section class="section">
 		<div class="container is-fluid">
+
+			<div class="columns">
+				<div class="column is-one-third is-offset-one-third">
+					<div class="field">
+						<div class="control has-text-centered">
+							<button class="button is-facebook"
+								v-on:click="signupWith('facebook')">
+								<i class="typcn typcn-social-facebook"></i>
+								<span>Sign in with Facebook</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="columns">
+				<div class="column is-one-third is-offset-one-third">
+					<div class="field">
+						<div class="control has-text-centered">
+							<button class="button is-github"
+								v-on:click="signupWith('github')">
+								<i class="typcn typcn-social-github"></i>
+								<span>Sign in with Github</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="columns">
+				<div class="column is-one-third is-offset-one-third">
+					<div class="field">
+						<div class="control has-text-centered">
+							<button class="button is-google"
+								v-on:click="signupWith('google')">
+								<i class="typcn typcn-social-google"></i>
+								<span>Sign in with Google</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="columns">
+				<div class="column is-one-third is-offset-one-third">
+					<div class="field">
+						<div class="control has-text-centered">
+							<button class="button is-google"
+								v-on:click="signupWith('twitter')">
+								<i class="typcn typcn-social-twitter"></i>
+								<span>Sign in with Twitter</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="columns">
+				<div class="column is-one-third is-offset-one-third has-text-centered">
+					<hr>
+				</div>
+			</div>
+
 			<div class="columns">
 
 				<div class="column is-half is-offset-one-quarter">
@@ -65,6 +128,7 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { required, minLength, email } from 'vuelidate/lib/validators'
+import Firebase from 'firebase'
 import { firebase } from './../firebase'
 
 export default {
@@ -116,6 +180,30 @@ export default {
 					console.log(error)
 					this.loading = false
 					this.error = error.message
+				})
+		},
+		signupWith (platform) {
+			let provider
+			switch(platform) {
+				case 'facebook':
+					provider = new Firebase.auth.FacebookAuthProvider()
+					// provider.addScope('user_birthday')
+					break
+				case 'google':	
+					provider = new Firebase.auth.GoogleAuthProvider()
+					break
+				case 'twitter':	
+					provider = new Firebase.auth.TwitterAuthProvider()
+					break	
+				case 'github':	
+					provider = new Firebase.auth.GithubAuthProvider()
+					break		
+			}
+			
+			return firebase.auth().signInWithPopup(provider)
+				.then((result) => {
+					// store firebase current user
+					return store.commit('setUser', firebase.auth().currentUser)
 				})
 		}
 	}
