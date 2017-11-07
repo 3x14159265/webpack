@@ -108,7 +108,7 @@
 						<div class="control has-text-centered">
 							<button v-on:click="signup" :disabled="$v.$invalid"
 								v-bind:class="{'is-loading': loading}"
-								type="submit" class="button is-link">Get started for free</button>
+								type="submit" class="button is-link">Sign up</button>
 						</div>
 					</div>
 
