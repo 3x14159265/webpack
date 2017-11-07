@@ -1,5 +1,5 @@
 'use strict'
 
 module.exports = {
-	appName: "vue.js"
+	appName: 'vue.js'
 }

@@ -168,13 +168,18 @@ export default {
 			firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
 				.then((user) => {
 					// set name for user, after registration is successful
-					if(user) {
-						user.updateProfile({
-							displayName: this.name,
-						})
+					return user.updateProfile({
+						displayName: this.name,
+					}).then((result) => {
 						// send email verification for this user
-						user.sendEmailVerification()
-					}
+						return user.sendEmailVerification()
+					})
+				})
+				.then((result) => {
+					let user = firebase.auth().currentUser
+					// save user to firestore
+					return firebase.db.collection('users').doc(user.uid)
+						.set(user)
 				})
 				.catch((error) => {
 					console.log(error)
@@ -202,9 +207,16 @@ export default {
 			
 			return firebase.auth().signInWithPopup(provider)
 				.then((result) => {
+					let user = firebase.auth().currentUser
+					// save user to firestore
+					return firebase.db.collection('users').doc(user.uid)
+						.set(user)
+				})
+				.then((result) => {
 					// store firebase current user
 					return store.commit('setUser', firebase.auth().currentUser)
 				})
+				
 		}
 	}
 }
