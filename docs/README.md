@@ -10,8 +10,8 @@ To use this template, scaffold a project with [vue-cli](https://github.com/vuejs
 
 ``` bash
 $ npm install -g vue-cli
-$ vue init webpack my-project
-$ cd my-project
+$ vue init pichsenmeister/webpack-firebase firebase-app
+$ cd firebase-app
 $ npm install
 $ npm run dev
 ```

@@ -1,18 +1,21 @@
 <template>
-
-	<pre>\{{ user }}</pre>
-
+	<section class="section container" v-if="user">
+		You are logged as {{ user.email }}
+	</section>
 </template>
 
 <script>
-import { firebase } from '@/firebase'
 
 export default {
 	name: 'UserDashboard',
 	computed: {
 		user () {
-			return this.$store.state.user
+			return this.$store.getters.user
 		}
-	},
+	}
 }
 </script>
+
+<style scoped>
+
+</style>
