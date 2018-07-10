@@ -1,36 +1,34 @@
 <template>
-	<div id="app">
-		<navbar-main></navbar-main>
-		<router-view/>
-	</div>
+  <div id="app">
+    <img src="./assets/logo.png">
+    {{#router}}
+    <router-view/>
+    {{else}}
+    <HelloWorld/>
+    {{/router}}
+  </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import NavbarMain from '@/components/NavbarMain'
-import { firebase } from '@/firebase'
+{{#unless router}}
+import HelloWorld from './components/HelloWorld'
 
-// add main-navbar as component
-Vue.component('navbar-main', NavbarMain)
-
+{{/unless}}
 export default {
-	name: 'app',
-	created () {
-		// listen to auth changes
-		// if user is logged in, redirect to main page for user
-		// otherwise force login
-		firebase.auth().onAuthStateChanged((user) => {
-			if(user && user.displayName) {
-				this.$store.commit('setUser', firebase.auth().currentUser)
-				this.$router.push('/dashboard')
-			} else if(!user) {
-				this.$router.push('/login')
-			}
-		})
-	}
+  name: 'App'{{#router}}{{else}},
+  components: {
+    HelloWorld
+  }{{/router}}
 }
 </script>
 
 <style>
-	@import './../node_modules/bulma/css/bulma.css';
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>

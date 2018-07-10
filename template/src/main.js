@@ -1,18 +1,26 @@
+{{#if_eq build "standalone"}}
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+{{/if_eq}}
 import Vue from 'vue'
-import Vuelidate from 'vuelidate'
-import router from '@/router'
-import App from '@/App'
-import store from '@/store'
+import App from './App'
+{{#router}}
+import router from './router'
+{{/router}}
 
 Vue.config.productionTip = false
-Vue.use(Vuelidate)
 
+/* eslint-disable no-new */
 new Vue({
-	el: '#app',
-	store,
-	router,
-	template: '<App/>',
-	components: { App }
+  el: '#app',
+  {{#router}}
+  router,
+  {{/router}}
+  {{#if_eq build "runtime"}}
+  render: h => h(App)
+  {{/if_eq}}
+  {{#if_eq build "standalone"}}
+  components: { App },
+  template: '<App/>'
+  {{/if_eq}}
 })
