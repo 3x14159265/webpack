@@ -33,7 +33,7 @@ FirebaseApp.signout = async () => {
 
 FirebaseApp.resetPassword = async email => {
 	try {
-		let result = await firebase.auth().sendPasswordResetEmail(email)
+		await firebase.auth().sendPasswordResetEmail(email)
 		return true
 	} catch (err) {
 		err.error = true
