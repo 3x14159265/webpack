@@ -16,7 +16,7 @@
 					</b-form-group>
 
 					<b-form-group v-if="error" class="text-danger">
-						<small>{{ error }}</small>
+						<small>\{{ error }}</small>
 					</b-form-group>
 
 					<b-button type="submit" variant="primary" :disabled="$store.getters.isLoading">Sign up</b-button>

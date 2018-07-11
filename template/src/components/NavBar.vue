@@ -13,7 +13,7 @@
 				<b-nav-item-dropdown right v-if="user">
 					<!-- Using button-content slot -->
 					<template slot="button-content">
-						<em>{{ user.email }}</em>
+						\{{ user.email }}
 					</template>
 					<b-dropdown-item @click="logout">Log out</b-dropdown-item>
 				</b-nav-item-dropdown>
