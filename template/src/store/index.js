@@ -10,14 +10,6 @@ export default new Vuex.Store({
 		user: null
 	},
 	mutations: {
-		setError (state, payload) {
-			if (!payload) state.error = null
-			if (payload && !state.error) state.error = {}
-			state.error = {
-				...state.error,
-				payload
-			}
-		},
 		setLoading (state, payload) {
 			state.loading = payload
 		},

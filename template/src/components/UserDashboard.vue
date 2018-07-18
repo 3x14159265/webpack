@@ -1,5 +1,5 @@
 <template>
-	<section class="section container" v-if="user">
+	<section class="section" v-if="user">
 		You are logged as \{{ user.email }}
 	</section>
 </template>

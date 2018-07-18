@@ -1,28 +1,29 @@
 <template>
-	<section class="section container">
+	<section class="section">
+		<b-container>
+			<b-row>
+				<b-col cols="12" sm="6" offset-sm="3" class="m-auto">
+					<b-form @submit="reset">
 
-		<div class="row">
-			<div class="col-12 col-sm-6 offset-sm-3 m-auto">
-				<b-form @submit="reset">
+						<b-form-group label="Email" label-for="inputEmail">
+							<b-form-input id="inputEmail" type="email" v-model="email" required placeholder="Enter email">
+							</b-form-input>
+						</b-form-group>
 
-					<b-form-group label="Email" label-for="inputEmail">
-						<b-form-input id="inputEmail" type="email" v-model="email" required placeholder="Enter email">
-						</b-form-input>
-					</b-form-group>
+						<b-form-group v-if="error" class="text-danger">
+							<small>\{{ error }}</small>
+						</b-form-group>
 
-					<b-form-group v-if="error" class="text-danger">
-						<small>\{{ error }}</small>
-					</b-form-group>
+						<b-form-group v-if="success" class="text-success">
+							<small>Email sent! Please follow the instructions in your email.</small>
+						</b-form-group>
 
-					<b-form-group v-if="success" class="text-success">
-						<small>Email sent! Please follow the instructions in your email.</small>
-					</b-form-group>
+						<b-button type="submit" variant="primary" :disabled="$store.getters.isLoading">Request Instructions</b-button>
+					</b-form>
 
-					<b-button type="submit" variant="primary" :disabled="$store.getters.isLoading">Request Instructions</b-button>
-				</b-form>
-
-			</div>
-		</div>
+				</b-col>
+			</b-row>
+		</b-container>
 
 	</section>
 </template>

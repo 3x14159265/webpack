@@ -1,36 +1,38 @@
 <template>
-	<section class="section container">
+	<section class="section">
 
-		<div class="row">
-			<div class="col-12 col-sm-6 offset-sm-3 m-auto">
-				<b-form @submit="signup">
+		<b-container>
+			<b-row>
+				<b-col cols="12" sm="6" offset-sm="3" class="m-auto">
+					<b-form @submit="signup">
 
-					<b-form-group label="Email" label-for="inputEmail">
-						<b-form-input id="inputEmail" type="email" v-model="email" required placeholder="Enter email">
-						</b-form-input>
-					</b-form-group>
+						<b-form-group label="Email" label-for="inputEmail">
+							<b-form-input id="inputEmail" type="email" v-model="email" required placeholder="Enter email">
+							</b-form-input>
+						</b-form-group>
 
-					<b-form-group label="Password" label-for="inputPassword">
-						<b-form-input id="inputPassword" type="password" v-model="password" required placeholder="Password">
-						</b-form-input>
-					</b-form-group>
+						<b-form-group label="Password" label-for="inputPassword">
+							<b-form-input id="inputPassword" type="password" v-model="password" required placeholder="Password">
+							</b-form-input>
+						</b-form-group>
 
-					<b-form-group v-if="error" class="text-danger">
-						<small>\{{ error }}</small>
-					</b-form-group>
+						<b-form-group v-if="error" class="text-danger">
+							<small>\{{ error }}</small>
+						</b-form-group>
 
-					<b-button type="submit" variant="primary" :disabled="$store.getters.isLoading">Sign up</b-button>
-				</b-form>
-			</div>
-		</div>
+						<b-button type="submit" variant="primary" :disabled="$store.getters.isLoading">Sign up</b-button>
+					</b-form>
+				</b-col>
+			</b-row>
 
-		<div class="row mt-4">
-			<div class="col-12 col-sm-6 offset-sm-3 m-auto my-auto">
-				<router-link to="/login">
-					<small>Already have an account?</small>
-				</router-link>
-			</div>
-		</div>
+			<b-row>
+				<b-col cols="12" sm="6" offset-sm="3" class="m-auto">
+					<b-link to="/login">
+						<small>Already have an account?</small>
+					</b-link>
+				</b-col>
+			</b-row>
+		</b-container>
 
 	</section>
 </template>
