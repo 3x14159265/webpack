@@ -2,10 +2,12 @@
 
 > A full-featured Webpack setup with hot-reload, lint-on-save, unit testing & css extraction (forked from https://github.com/vuejs-templates/webpack) including
 
+* [Vue Router](https://router.vuejs.org)
+* [Vuex](https://vuex.vuejs.org) 
 * [Firebase](https://firebase.google.com)
 * [Bootstrap CSS Framework](https://getbootstrap.com)
-* [Bootstrap Vue](https://bootstrap-vue.js.org/)
-* SASS support
+* [Bootstrap Vue](https://bootstrap-vue.js.org)
+* [SASS](https://sass-lang.com) support
 * Auth Management via Firebase Email Auth provider
 
 > This template is Vue 2.0 compatible. 
